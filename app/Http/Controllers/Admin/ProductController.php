@@ -18,13 +18,13 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::latest()->when(request()->q, function($products) {
-            $products = $products->where('title', 'like', '%'. request()->q . '%');
+        $products = Product::latest()->when(request()->q, function ($products) {
+            $products = $products->where('title', 'like', '%' . request()->q . '%');
         })->paginate(10);
 
         return view('admin.product.index', compact('products'));
     }
-    
+
     /**
      * create
      *
@@ -35,7 +35,7 @@ class ProductController extends Controller
         $categories = Category::latest()->get();
         return view('admin.product.create', compact('categories'));
     }
-    
+
     /**
      * store
      *
@@ -44,45 +44,44 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-       $this->validate($request, [
-           'image'          => 'required|image|mimes:jpeg,jpg,png|max:2000',
-           'title'          => 'required|unique:products',
-           'category_id'    => 'required',
-           'stock'          => 'required|integer',
-           'content'        => 'required',
-           'weight'         => 'required',
-           'price'          => 'required',
-           'discount'       => 'required',
-       ]); 
+        $this->validate($request, [
+            'image'          => 'required|image|mimes:jpeg,jpg,png|max:2000',
+            'title'          => 'required|unique:products',
+            'category_id'    => 'required',
+            'content'        => 'required',
+            'weight'         => 'required',
+            'price'          => 'required',
+            'discount'       => 'required',
+        ]);
 
-       //upload image
-       $image = $request->file('image');
-       $image->storeAs('public/products', $image->hashName());
+        //upload image
+        $image = $request->file('image');
+        $image->storeAs('public/products', $image->hashName());
 
-       //save to DB
-       $product = Product::create([
-           'image'          => $image->hashName(),
-           'title'          => $request->title,
-           'slug'           => Str::slug($request->title, '-'),
-           'category_id'    => $request->category_id,
-           'stock'          => $request->stock,
-           'content'        => $request->content,
-           'weight'         => $request->weight,
-           'price'          => $request->price,
-           'discount'       => $request->discount,
-           'keywords'       => $request->keywords,
-           'description'    => $request->description
-       ]);
+        var_dump($request->variations);
 
-       if($product){
+        //save to DB
+        $product = Product::create([
+            'image'          => $image->hashName(),
+            'title'          => $request->title,
+            'slug'           => Str::slug($request->title, '-'),
+            'category_id'    => $request->category_id,
+            'content'        => $request->content,
+            'weight'         => $request->weight,
+            'price'          => $request->price,
+            'discount'       => $request->discount,
+            'keywords'       => $request->keywords,
+            'description'    => $request->description
+        ]);
+        if ($product) {
             //redirect dengan pesan sukses
             return redirect()->route('admin.product.index')->with(['success' => 'Data Berhasil Disimpan!']);
-        }else{
+        } else {
             //redirect dengan pesan error
             return redirect()->route('admin.product.index')->with(['error' => 'Data Gagal Disimpan!']);
         }
     }
-    
+
     /**
      * edit
      *
@@ -94,7 +93,7 @@ class ProductController extends Controller
         $categories = Category::latest()->get();
         return view('admin.product.edit', compact('product', 'categories'));
     }
-    
+
     /**
      * update
      *
@@ -104,17 +103,17 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-       $this->validate($request, [
-           'title'          => 'required|unique:products,title,'.$product->id,
-           'category_id'    => 'required',
-           'content'        => 'required',
-           'weight'         => 'required',
-           'price'          => 'required',
-           'discount'       => 'required',
-       ]); 
+        $this->validate($request, [
+            'title'          => 'required|unique:products,title,' . $product->id,
+            'category_id'    => 'required',
+            'content'        => 'required',
+            'weight'         => 'required',
+            'price'          => 'required',
+            'discount'       => 'required',
+        ]);
 
-       //cek jika image kosong
-       if($request->file('image') == '') {
+        //cek jika image kosong
+        if ($request->file('image') == '') {
 
             //update tanpa image
             $product = Product::findOrFail($product->id);
@@ -129,11 +128,10 @@ class ProductController extends Controller
                 'keywords'       => $request->keywords,
                 'description'    => $request->description
             ]);
-
-       } else {
+        } else {
 
             //hapus image lama
-            Storage::disk('local')->delete('public/products/'.basename($product->image));
+            Storage::disk('local')->delete('public/products/' . basename($product->image));
 
             //upload image baru
             $image = $request->file('image');
@@ -153,17 +151,17 @@ class ProductController extends Controller
                 'keywords'       => $request->keywords,
                 'description'    => $request->description
             ]);
-       }
+        }
 
-       if($product){
+        if ($product) {
             //redirect dengan pesan sukses
             return redirect()->route('admin.product.index')->with(['success' => 'Data Berhasil Diupdate!']);
-        }else{
+        } else {
             //redirect dengan pesan error
             return redirect()->route('admin.product.index')->with(['error' => 'Data Gagal Diupdate!']);
         }
     }
-    
+
     /**
      * destroy
      *
@@ -173,14 +171,14 @@ class ProductController extends Controller
     public function destroy($id)
     {
         $product = Product::findOrFail($id);
-        $image = Storage::disk('local')->delete('public/products/'.basename($product->image));
+        $image = Storage::disk('local')->delete('public/products/' . basename($product->image));
         $product->delete();
 
-        if($product){
+        if ($product) {
             return response()->json([
                 'status' => 'success'
             ]);
-        }else{
+        } else {
             return response()->json([
                 'status' => 'error'
             ]);

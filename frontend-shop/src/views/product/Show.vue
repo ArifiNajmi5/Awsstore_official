@@ -37,6 +37,15 @@
                                               gram</span>
                                       </td>
                                   </tr>
+                                  <tr>
+                                      <td class="font-weight-bold">SIZE</td>
+                                      <td>:</td>
+                                      <td>
+                                          <span class="badge badge-pill badge-success"
+                                              style="font-size: 14px;border-radius: .3rem;padding: .25em .5em .2em;"> {{ product.variations }}
+                                              </span>
+                                      </td>
+                                  </tr>
                               </tbody>
                           </table>
                           <button @click.prevent="addToCart(product.id, calculateDiscount(product), product.weight)" class="btn btn-primary btn-lg btn-block"><i class="fa fa-shopping-cart"></i> TAMBAH KE KERANJANG</button>
@@ -44,6 +53,7 @@
                   </div>
               </div>
           </div>
+
           <div class="row mt-5">
               <div class="col-md-12">
                   <div class="card border-0 rounded shadow">

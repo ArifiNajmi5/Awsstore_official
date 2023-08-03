@@ -73,6 +73,24 @@
                             </div>
                         </div>
 
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>VARIATIONS</label>
+                                    <br />
+
+                                    <div id="variations">
+
+                                    </div>
+                                    {{--  --}}
+
+                                    <button type="button" onclick="addVariations()" style="background-color:#307B40"
+                                        class="btn btn-success mr-1 btn-submit">
+                                        Add Variations</button>
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="form-group">
                             <label>DESKRIPSI</label>
                             <textarea class="form-control content @error('content') is-invalid @enderror" name="content"
@@ -145,5 +163,13 @@
     };
 
     tinymce.init(editor_config);
+
+    function addVariations() {
+            let child = `<input type="text" name="" class="form-control" style="margin-bottom: 8px" value="" placeholder="variasi">`
+
+            const range = document.createRange();
+            const newComponent = range.createContextualFragment(child);
+            document.getElementById('variations').appendChild(newComponent)
+        }
 </script>
 @endsection
