@@ -51,7 +51,7 @@ const cart = {
     actions: {
 
         //action addToCart
-        addToCart({ commit }, { product_id, price, quantity, weight }) {
+        addToCart({ commit }, { product_id, price, quantity, weight, selectedVariation }) {
 
             //get data token dan user
             const token = localStorage.getItem('token')
@@ -66,6 +66,7 @@ const cart = {
                 price: price,
                 quantity: quantity,
                 weight: weight,
+                selected_variation: selectedVariation,
                 customer_id: user.id
             })
             .then(() => {

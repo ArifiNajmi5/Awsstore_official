@@ -21,6 +21,7 @@ return new class extends Migration
         $table->unsignedBigInteger('category_id');
         $table->text('content');
         $table->bigInteger('weight');
+        $table->json('variations')->nullable();
         $table->bigInteger('price');
         $table->integer('discount')->nullable();
         $table->timestamps();

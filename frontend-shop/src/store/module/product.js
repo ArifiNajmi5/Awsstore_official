@@ -8,7 +8,7 @@ const product = {
 
     //state
     state: {
-    
+
         //index products
         products: [],
 
@@ -40,17 +40,17 @@ const product = {
 
             //get data sliders ke server
             Api.get('/products')
-            .then(response => {
+                .then(response => {
 
-                //commit ke mutation GET_PRODUCTS dengan response data
+                    //commit ke mutation GET_PRODUCTS dengan response data
                 commit('GET_PRODUCTS', response.data.products)
 
-            }).catch(error => {
+                }).catch(error => {
 
-                //show error log dari response
-                console.log(error)
+                    //show error log dari response
+                    console.log(error)
 
-            })
+                })
         },
 
         //action getDetailProducts
@@ -58,17 +58,22 @@ const product = {
 
             //get data sliders ke server
             Api.get(`/product/${slug}`)
-            .then(response => {
+                .then(response => {
 
-                //commit ke mutation GET_PRODUCTS dengan response data
-                commit('DETAIL_PRODUCT', response.data.product)
+                    //commit ke mutation GET_PRODUCTS dengan response data
+                    commit('DETAIL_PRODUCT', {
+                        ...response.data.product,
+                        variations: response.data.product.variations
+                            ? JSON.parse(response.data.product.variations)
+                            : []
+                    })
 
-            }).catch(error => {
+                }).catch(error => {
 
-                //show error log dari response
-                console.log(error)
+                    //show error log dari response
+                    console.log(error)
 
-            })
+                })
         }
 
     },

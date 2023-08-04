@@ -54,11 +54,13 @@ class ProductController extends Controller
             'discount'       => 'required',
         ]);
 
+
         //upload image
         $image = $request->file('image');
         $image->storeAs('public/products', $image->hashName());
 
-        var_dump($request->variations);
+        // get variations input as json encode
+        $variations = json_encode($request->variations, true);
 
         //save to DB
         $product = Product::create([
@@ -68,6 +70,7 @@ class ProductController extends Controller
             'category_id'    => $request->category_id,
             'content'        => $request->content,
             'weight'         => $request->weight,
+            'variations'    => $variations,
             'price'          => $request->price,
             'discount'       => $request->discount,
             'keywords'       => $request->keywords,
@@ -91,7 +94,9 @@ class ProductController extends Controller
     public function edit(Product $product)
     {
         $categories = Category::latest()->get();
-        return view('admin.product.edit', compact('product', 'categories'));
+        $variations = json_decode($product->variations);
+
+        return view('admin.product.edit', compact('product', 'variations', 'categories'));
     }
 
     /**
@@ -124,6 +129,7 @@ class ProductController extends Controller
                 'content'        => $request->content,
                 'weight'         => $request->weight,
                 'price'          => $request->price,
+                'variations'    => json_encode($request->variations),
                 'discount'       => $request->discount,
                 'keywords'       => $request->keywords,
                 'description'    => $request->description

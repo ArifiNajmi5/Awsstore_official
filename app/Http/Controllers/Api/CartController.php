@@ -65,6 +65,7 @@ class CartController extends Controller
                 'customer_id'   => $request->customer_id,
                 'quantity'      => $request->quantity,
                 'price'         => $request->price,
+                'selected_variation' => $request->selected_variation,
                 'weight'        => $request->weight
             ]);
         }

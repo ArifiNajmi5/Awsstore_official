@@ -168,7 +168,7 @@
         tinymce.init(editor_config);
 
         function addVariations() {
-            let child = `<input type="text" name="" class="form-control" style="margin-bottom: 8px" value="" placeholder="variasi">`
+            let child = `<input type="text" name="variations[]" class="form-control" style="margin-bottom: 8px" value="" placeholder="variasi">`
 
             const range = document.createRange();
             const newComponent = range.createContextualFragment(child);
