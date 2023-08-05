@@ -89,7 +89,7 @@
 <style scoped>
     .table .thead-dark th {
         color: #fff;
-        background-color: #6777ef;
-        border-color: #6777ef;
+        background-color: #7C0902;
+        border-color: #fff;
     }
 </style>

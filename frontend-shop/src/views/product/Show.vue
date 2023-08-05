@@ -40,7 +40,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="font-weight-bold">VARIASI</td>
+                                    <td class="font-weight-bold">UKURAN</td>
                                     <td>:</td>
                                     <td>
                         

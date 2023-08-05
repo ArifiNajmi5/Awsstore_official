@@ -3,7 +3,9 @@
         <div class="carousel-inner">
 
             <div class="carousel-item" v-for="(slider, id) in sliders" :class="{ active: id==0 }" :key='slider.id'>
+                <a :href="slider.link">
                 <img :src="slider.image" class="d-block w-100 rounded-lg">
+                </a>
             </div>
 
         </div>
