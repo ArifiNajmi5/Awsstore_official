@@ -137,7 +137,7 @@ export default {
                 product_id: product_id,
                 price: price,
                 weight: weight,
-                selectedVariation: typeof selectedVariation === 'object' ? '' : selectedVariation,
+                selectedVariation: typeof selectedVariation === 'object' ? '-' : selectedVariation,
                 quantity: 1
             })
 
