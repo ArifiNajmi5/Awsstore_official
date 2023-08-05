@@ -103,6 +103,11 @@
                                                 <td style="padding: .20rem">QTY</td>
                                                 <td style="padding: .20rem">:</td>
                                                 <td style="padding: .20rem"><b>{{ $product->qty }}</b></td>
+                                                <div>
+                                                    <td style="padding: .20rem">VARIASI</td>
+                                                 <td style="padding: .20rem">:</td>
+                                                <td style="padding: .20rem"><b>{{ json_decode($invoice->selected_variation)[$loop->index] }}</b></td>
+                                                </div>
                                             </tr>
                                         </table>
                                     </td>

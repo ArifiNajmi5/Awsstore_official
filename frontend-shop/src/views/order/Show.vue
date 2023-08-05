@@ -44,7 +44,7 @@
                                 <td>:</td>
                                 <td>
                                     {{ detailOrder.courier }} / {{ detailOrder.service }} / Rp.
-                                    {{ detailOrder.cost_courier  }}
+                                    {{ detailOrder.cost_courier }}
                                 </td>
                             </tr>
                             <tr>
@@ -62,7 +62,7 @@
                                 </td>
                                 <td>:</td>
                                 <td>
-                                    Rp. {{ detailOrder.grand_total  }}
+                                    Rp. {{ detailOrder.grand_total }}
                                 </td>
                             </tr>
                             <tr>
@@ -71,15 +71,15 @@
                                 </td>
                                 <td>:</td>
                                 <td>
-                                    <button @click="payment(detailOrder.snap_token)"
-                                        v-if="detailOrder.status == 'pending'" class="btn btn-primary">BAYAR
+                                    <button @click="payment(detailOrder.snap_token)" v-if="detailOrder.status == 'pending'"
+                                        class="btn btn-primary">BAYAR
                                         SEKARANG</button>
-                                    <button v-else-if="detailOrder.status == 'success'"
-                                        class="btn btn-success">{{ detailOrder.status }}</button>
-                                    <button v-else-if="detailOrder.status == 'expired'"
-                                        class="btn btn-warning">{{ detailOrder.status }}</button>
-                                    <button v-else-if="detailOrder.status == 'failed'"
-                                        class="btn btn-danger">{{ detailOrder.status }}</button>
+                                    <button v-else-if="detailOrder.status == 'success'" class="btn btn-success">{{
+                                        detailOrder.status }}</button>
+                                    <button v-else-if="detailOrder.status == 'expired'" class="btn btn-warning">{{
+                                        detailOrder.status }}</button>
+                                    <button v-else-if="detailOrder.status == 'failed'" class="btn btn-danger">{{
+                                        detailOrder.status }}</button>
                                 </td>
                             </tr>
                         </table>
@@ -94,7 +94,7 @@
                             style="border-style: solid !important;border-color: rgb(198, 206, 214) !important;">
                             <tbody>
 
-                                <tr v-for="product in productInOrder" :key="product.id" style="background: #edf2f7;">
+                                <tr v-for="(product, idx) in productInOrder" :key="product.id" style="background: #edf2f7;">
                                     <td class="b-none" width="25%">
                                         <div class="wrapper-image-cart">
                                             <img :src="product.image" style="width: 100%;border-radius: .5rem">
@@ -107,6 +107,11 @@
                                                 <td style="padding: .20rem">QTY</td>
                                                 <td style="padding: .20rem">:</td>
                                                 <td style="padding: .20rem"><b>{{ product.qty }}</b></td>
+                                                <div>
+                                                    <td style="padding: .20rem">VARIASI</td>
+                                                    <td style="padding: .20rem">:</td>
+                                                    <td style="padding: .20rem"><b>{{ variations[idx] }}</b></td>
+                                                </div>
                                             </tr>
                                         </table>
                                     </td>
@@ -125,81 +130,86 @@
 </template>
 
 <script>
-    //import customer menu component
-    import CustomerMenu from '@/components/CustomerMenu.vue'
-    import { computed, onMounted } from 'vue'
-    import { useStore } from 'vuex'
-    import { useRoute, useRouter } from 'vue-router'
+//import customer menu component
+import CustomerMenu from '@/components/CustomerMenu.vue'
+import { computed, onMounted } from 'vue'
+import { useStore } from 'vuex'
+import { useRoute, useRouter } from 'vue-router'
 
-    export default {
+export default {
 
-        name: 'OrderShowComponent',
+    name: 'OrderShowComponent',
 
-        components: {
-            //customer menu component
-            CustomerMenu
-        },
+    components: {
+        //customer menu component
+        CustomerMenu
+    },
 
-        setup() {
+    setup() {
 
-            //store vuex
-            const store = useStore()
+        //store vuex
+        const store = useStore()
 
-            //router and route vue router
-            const route  = useRoute()
-            const router = useRouter()
+        //router and route vue router
+        const route = useRoute()
+        const router = useRouter()
 
-            //mounted
-            onMounted(() => {
+        //mounted
+        onMounted(() => {
 
-                //panggil action "detailOrder" di dalam module "order" di Vuex
-                store.dispatch('order/detailOrder', route.params.snap_token)
+            //panggil action "detailOrder" di dalam module "order" di Vuex
+            store.dispatch('order/detailOrder', route.params.snap_token)
 
+        })
+
+        //computed
+        const detailOrder = computed(() => {
+
+            //panggil getter dengan nama "detailOrder" di dalam module "order" Vuex
+            return store.getters['order/detailOrder']
+
+        })
+
+        const variations = computed(() => {
+            return JSON.parse(detailOrder.value.selected_variation)
+        })
+
+        //computed
+        const productInOrder = computed(() => {
+
+            //panggil getter dengan nama "productInOrder" di dalam module "order" Vuex
+            return store.getters['order/productInOrder']
+
+        })
+
+        //function payment "Midtrans"
+        function payment(snap_token) {
+
+            window.snap.pay(snap_token, {
+
+                onSuccess: function () {
+                    router.push({ name: 'detail_order', params: { snap_token: snap_token } })
+                },
+                onPending: function () {
+                    router.push({ name: 'detail_order', params: { snap_token: snap_token } })
+                },
+                onError: function () {
+                    router.push({ name: 'detail_order', params: { snap_token: snap_token } })
+                }
             })
-
-            //computed
-            const detailOrder = computed(() => {
-
-                //panggil getter dengan nama "detailOrder" di dalam module "order" Vuex
-                return store.getters['order/detailOrder']
-                
-            })
-
-            //computed
-            const productInOrder = computed(() => {
-
-                //panggil getter dengan nama "productInOrder" di dalam module "order" Vuex
-                return store.getters['order/productInOrder']
-
-            })
-
-            //function payment "Midtrans"
-            function payment(snap_token) {
-
-                window.snap.pay(snap_token, {
-
-                    onSuccess: function () {
-                        router.push({name: 'detail_order', params:{snap_token: snap_token}})  
-                    },
-                    onPending: function () {
-                        router.push({name: 'detail_order', params:{snap_token: snap_token}})
-                    },
-                    onError: function () {
-                        router.push({name: 'detail_order', params:{snap_token: snap_token}})  
-                    }
-                })
-
-            }
-
-            return {
-                store,
-                route,
-                router,
-                detailOrder,
-                productInOrder,
-                payment
-            }
 
         }
+
+        return {
+            store,
+            route,
+            router,
+            detailOrder,
+            variations,
+            productInOrder,
+            payment
+        }
+
     }
+}
 </script>

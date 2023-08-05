@@ -21,6 +21,7 @@ return new class extends Migration
         $table->string('service');
         $table->bigInteger('cost_courier');
         $table->integer('weight');
+        $table->string('selected_variation')->nullable();
         $table->string('name');
         $table->bigInteger('phone');
         $table->integer('province');

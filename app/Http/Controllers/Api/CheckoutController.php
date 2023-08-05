@@ -54,6 +54,7 @@ class CheckoutController extends Controller
                 'service'       => $this->request->service,
                 'cost_courier'  => $this->request->cost,
                 'weight'        => $this->request->weight,
+                'selected_variation' => $this->request->selected_variation,
                 'name'          => $this->request->name,
                 'phone'         => $this->request->phone,
                 'province'      => $this->request->province,
@@ -72,6 +73,7 @@ class CheckoutController extends Controller
                     'product_id'    => $cart->product_id,
                     'product_name'  => $cart->product->title,
                     'image'         => $cart->product->image,
+                    'selected_variation'         => $cart->product->selected_variation,
                     'qty'           => $cart->quantity,
                     'price'         => $cart->price,
                 ]);

@@ -208,6 +208,7 @@ const cart = {
                     name:       data.name,
                     phone:      data.phone,
                     province:   data.province_id,
+                    selected_variation: JSON.stringify(data.selected_variation),
                     city:       data.city_id,
                     address:    data.address,
                     grand_total:data.grandTotal
