@@ -9,7 +9,7 @@
 <script>
 
   import HeaderComponent from './components/Header.vue'
-  import FooterComponent from './components/Footer.vue'
+  import FooterComponent from './components/footer.vue'
 
   export default {
 
