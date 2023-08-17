@@ -91,7 +91,7 @@
                     <form method="POST" action="{{ url('user/two-factor-recovery-codes') }}">
                         @csrf
 
-                        <button type="submit" class="btn btn-primary text-uppercase">
+                        <button style="background-color:#307B40" type="submit" class="btn btn-success text-uppercase">
                             Regenerate Recovery Codes
                         </button>
                     </form>

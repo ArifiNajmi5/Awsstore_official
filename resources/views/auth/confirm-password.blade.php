@@ -9,8 +9,8 @@
 
             <div class="col-md-4">
                 <div class="img-logo text-center mt-5">
-                    <img src="{{ asset('assets/img/company.png') }}"
-                        style="width: 80px;">
+                    <img src="{{ asset('assets/img/awslogo.png') }}"
+                        style="width: 150px;">
                 </div>
                 <div class="card o-hidden border-0 shadow-lg mb-3 mt-5">
                     <div class="card-body p-4">
@@ -32,7 +32,7 @@
                             </div>
     
                             <div class="form-group">
-                                <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
+                                <button style="background-color:#7C0902" type="submit" class="btn btn-danger btn-lg btn-block" tabindex="4">
                                     CONFIRM PASSWORD
                                 </button>
                             </div>

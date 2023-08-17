@@ -24,12 +24,14 @@
                         <div class="d-flex justify-content-end">
 
                             <div class="cart-header">
-                                <a href="/cart" class="btn search-button btn-md" style="color: #ffffff;background-color: #7C0902;border-color: #ffffff;"><i class="fa fa-shopping-cart"></i> {{ cartCount }} | Rp. {{ moneyFormat(cartTotal) }} </a>
+                                <a href="/cart"  class="btn search-button btn-md" style="color: #ffffff;background-color: #7C0902;border-color: #ffffff;min-width:100px"><i class="fa fa-shopping-cart"></i> {{ cartCount }} | Rp. {{ moneyFormat(cartTotal) }} </a>
                             </div>
 
+                            
                             <div class="account">
-                                <router-link :to="{name: 'login'}" v-if="!isLoggedIn" class="btn search-button btn-md d-none d-md-block ml-4"><i class="fa fa-user-circle"></i> ACCOUNT</router-link>
-                                <router-link :to="{name: 'dashboard'}" v-else class="btn search-button btn-md d-none d-md-block ml-4"><i class="fa fa-tachometer-alt"></i> DASHBOARD </router-link>      
+                                <!-- <h1>Hello</h1> -->
+                                <router-link :to="{name: 'login'}" v-if="!isLoggedIn" class="btn search-button btn-md d-md-block ml-4"><i class="fa fa-user-circle"></i> ACCOUNT</router-link>
+                                <router-link :to="{name: 'dashboard'}" v-else class="btn search-button btn-md d-md-block ml-4"><i class="fa fa-tachometer-alt"></i> DASHBOARD </router-link>      
                             </div>
 
                         </div>

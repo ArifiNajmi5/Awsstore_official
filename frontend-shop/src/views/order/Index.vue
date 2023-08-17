@@ -6,7 +6,7 @@
             </div>
             <div class="col-md-9 mb-4">
                 <div class="card border-0 rounded shadow">
-                    <div class="card-body">
+                    <div class="card-body" style="overflow-y: auto;">
                         <h5 class="font-weight-bold"> <i class="fas fa-shopping-cart"></i> MY ORDER</h5>
                         <hr>
                         <table class="table table-striped table-bordered">

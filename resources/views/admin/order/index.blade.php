@@ -32,8 +32,8 @@
                                     <th scope="col" style="text-align: center;width: 6%">NO.</th>
                                     <th scope="col">NO. INVOICE</th>
                                     <th scope="col">NAMA LENGKAP</th>
+                                    <th scope="col">STATUS </th>
                                     <th scope="col">GRAND TOTAL</th>
-                                    <th scope="col">STATUS</th>
                                     <th scope="col" style="width: 15%;text-align: center">AKSI</th>
                                 </tr>
                             </thead>
