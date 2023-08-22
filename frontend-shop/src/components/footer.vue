@@ -10,10 +10,7 @@
                         sekarang.
                     </p>
                     <div class="social">
-                        <a href="#" class="mr-4"> <i class="fab fa-facebook fa-2x"></i></a>
-                        <a href="#" class="mr-4" style="color:#00c4ff"> <i class="fab fa-twitter fa-2x"></i></a>
-                        <a href="#" class="mr-4" style="color: #de2fb8;"> <i class="fab fa-instagram fa-2x"></i></a>
-                        <a href="#" class="mr-4" style="color: red;"> <i class="fab fa-youtube fa-2x"></i></a>
+                        
                         <a href="https://www.tiktok.com/@awsstoreofficial?_t=8daToU2F2ry&_r=1" class="mr-4" style="color: red;"> <img class="fab" style="vertical-align: top;" src="../../public/tiktok.png" height="32" alt="" srcset=""></a>
                         <a href="https://s.lazada.co.id/s.PCtAn" class="mr-4" style="color: red;"> <img class="fab" style="vertical-align: top;" src="../../public/lazada.png" height="32" alt="" srcset=""></a>
                         <a href="https://shopee.co.id/awsstore.official" class="mr-4" style="color: red;"> <img class="fab" style="vertical-align: top;" src="../../public/shopee.png" height="32" alt="" srcset=""></a>
@@ -73,11 +70,11 @@
                     <p>
                         <i class="fa fa-clock"></i> Toko Buka Setiap Hari :
                         <br>
-                        Senin - Minggu ( 07.00 s/d 16.00 )
+                        Senin-Jumat ( 07.00 s/d 16.00 )
                     </p>
                     <p>
-                        <i class="fa fa-map-marker"></i> Desa Kranji Gang Masjid Kecamatan Kedungwuni, Kabupaten
-                        Pekalongan, Jawa Tengah, 51173
+                        <i class="fa fa-map-marker"></i> Desa Karanganyar Kecamatan Tirto, Kabupaten
+                        Pekalongan, Jawa Tengah, 51151
                     </p>
                     <p>
                         <i class="fa fa-solid fa-phone"></i> Hubungi CS :
