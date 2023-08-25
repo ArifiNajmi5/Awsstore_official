@@ -14,6 +14,7 @@
                         <a href="https://www.tiktok.com/@awsstoreofficial?_t=8daToU2F2ry&_r=1" class="mr-4" style="color: red;"> <img class="fab" style="vertical-align: top;" src="../../public/tiktok.png" height="32" alt="" srcset=""></a>
                         <a href="https://s.lazada.co.id/s.PCtAn" class="mr-4" style="color: red;"> <img class="fab" style="vertical-align: top;" src="../../public/lazada.png" height="32" alt="" srcset=""></a>
                         <a href="https://shopee.co.id/awsstore.official" class="mr-4" style="color: red;"> <img class="fab" style="vertical-align: top;" src="../../public/shopee.png" height="32" alt="" srcset=""></a>
+                        <a href="https://wa.me/6285866064890" class="mr-4" style="color: red;"> <img class="fab" style="vertical-align: top;" src="../../public/WA.png" height="32" alt="" srcset=""></a>
                     </div>
                 </div>
                 <div class="col-md-3 mb-4">
